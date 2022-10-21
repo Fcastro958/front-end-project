@@ -1,11 +1,12 @@
+
+//when click button, display the data.
 $("#submit").on('click', getData)
 
+//clearing out result
 function clearResults () {
     $("#result").empty()
 }
-
-
-
+//using get to get data from api
 function getData() {
     clearResults();
     $.get("https://zoo-animal-api.herokuapp.com/animals/rand/", (data) => {
@@ -13,7 +14,7 @@ function getData() {
         AnimalDisplay(data)
     });
 }
-
+//create the a element to display data 
 function AnimalDisplay(data){
     //console.log(data)
     let $Resultcard = $("<span class='card' style='width: 18rem;'>")
@@ -29,7 +30,7 @@ function AnimalDisplay(data){
     let $life = $(`<div class='box'> <b>Lifespan:</b> ${data.lifespan} years.</div>`)
     let $weight = $(`<div class='box'> <b>Maximum weight:</b> (${data.weight_max}lbs.)    <b>Minimum weight:</b> (${data.weight_min}lbs.) </div>`)
    
-
+//append the al
     $Resultcard.append($cardTitle, $cardImg, $Type, $active, $diet, $geo, $habitat, $latinName, $length, $life, $weight);
     $("#result").append($Resultcard);
 
